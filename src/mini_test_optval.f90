@@ -1,3 +1,4 @@
+!> This submodule draws on the `check` subroutine of `fortran-lang/stdlib`!
 submodule(mini_test) mini_test_optval
 
 contains
@@ -42,5 +43,17 @@ contains
         end if
 
     end function optval_ll1
+
+    ! Cannot be made elemental
+    pure module function optval_character(x, default) result(x_)
+        character(len=*), intent(in), optional :: x
+        character(len=*), intent(in) :: default
+        character(len=:), allocatable :: x_
+
+        if (present(x)) then;   x_ = x
+        else;                   x_ = default
+        end if
+
+    end function optval_character
     
 end submodule mini_test_optval

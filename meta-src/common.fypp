@@ -18,10 +18,26 @@
 #! Collected (kind, type) tuples for complex types
 #:set CMPLX_KINDS_TYPES = list(zip(CMPLX_KINDS, CMPLX_TYPES))
 
+#! Integer kinds to be considered during templating
+#:set INT_KINDS = ["int8", "int16", "int32", "int64"]
+
+#! Integer types to be considered during templating
+#:set INT_TYPES = ["integer({})".format(k) for k in INT_KINDS]
+
+#! Collected (kind, type) tuples for integer types
+#:set INT_KINDS_TYPES = list(zip(INT_KINDS, INT_TYPES))
+
 #! Logical kinds to be considered during templating
 #:set LOG_KINDS = ["lk", "c_bool"]
 
 #! Logical types to be considered during templating
 #:set LOG_TYPES = ["logical({})".format(k) for k in LOG_KINDS]
+
+#! Collected (kind, type) tuples for logical types
+#:set LOG_KINDS_TYPES = list(zip(LOG_KINDS, LOG_TYPES))
+
+#:def ranksuffix(rank)
+#{if rank > 0}#(${":" + ",:" * (rank - 1)}$)#{endif}#
+#:enddef
 
 #:endmute
