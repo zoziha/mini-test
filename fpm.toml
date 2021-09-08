@@ -1,0 +1,22 @@
+name        = "mini-test"
+version     = "0.0.1"
+license     = "MIT"
+maintainer  = "mini-test contributors"
+author      = "左志华"
+copyright   = "Copyright (c) 2021 左志华"
+description = "A minimal test library, born for Fortran."
+categories  = "test"
+keywords    = ["mini", "test"]
+
+[build]
+auto-executables    = false
+auto-examples       = false
+auto-tests          = false
+
+[library]
+source-dir = "src"
+
+[[example]]
+name        = "mini_test_check"
+source-dir  = "example"
+main        = "demo_mini_test_check.f90"
