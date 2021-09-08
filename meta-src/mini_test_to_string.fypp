@@ -33,8 +33,10 @@ contains
         character(len=*), intent(in), optional :: format
         character(len=:), allocatable          :: string
 
-        string = '(' // to_string_r_${k1}$(value%re, format) // ',' // &
-                      & to_string_r_${k1}$(value%im, format) // ')'
+        #! string = '(' // to_string_r_${k1}$(value%re, format) // ',' // &
+        #!               & to_string_r_${k1}$(value%im, format) // ')'
+        string = '(' // to_string_r_${k1}$(real (value), format) // ',' // &
+                      & to_string_r_${k1}$(aimag(value), format) // ')'
 
     end function to_string_${t1[0]}$_${k1}$
     #:endfor
