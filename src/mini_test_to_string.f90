@@ -55,8 +55,8 @@ contains
         character(len=*), intent(in), optional :: format
         character(len=:), allocatable          :: string
 
-        string = '(' // to_string_r_sp(value%re, format) // ',' // &
-                      & to_string_r_sp(value%im, format) // ')'
+        string = '(' // to_string_r_sp(real (value), format) // ',' // &
+                      & to_string_r_sp(aimag(value), format) // ')'
 
     end function to_string_c_sp
     pure module function to_string_c_dp(value, format) result(string)
@@ -64,8 +64,8 @@ contains
         character(len=*), intent(in), optional :: format
         character(len=:), allocatable          :: string
 
-        string = '(' // to_string_r_dp(value%re, format) // ',' // &
-                      & to_string_r_dp(value%im, format) // ')'
+        string = '(' // to_string_r_dp(real (value), format) // ',' // &
+                      & to_string_r_dp(aimag(value), format) // ')'
 
     end function to_string_c_dp
     pure module function to_string_c_qp(value, format) result(string)
@@ -73,8 +73,8 @@ contains
         character(len=*), intent(in), optional :: format
         character(len=:), allocatable          :: string
 
-        string = '(' // to_string_r_qp(value%re, format) // ',' // &
-                      & to_string_r_qp(value%im, format) // ')'
+        string = '(' // to_string_r_qp(real (value), format) // ',' // &
+                      & to_string_r_qp(aimag(value), format) // ')'
 
     end function to_string_c_qp
 
