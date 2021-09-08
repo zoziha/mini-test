@@ -20,3 +20,8 @@ source-dir = "src"
 name        = "mini_test_check"
 source-dir  = "example"
 main        = "demo_mini_test_check.f90"
+
+[[example]]
+name        = "mini_test_is_close"
+source-dir  = "example"
+main        = "demo_mini_test_is_close.f90"

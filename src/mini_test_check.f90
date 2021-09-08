@@ -12,9 +12,7 @@ contains
         
         logical                                 :: warn_
 
-        if (present(warn)) then; warn_ = warn
-        else;                    warn_ = .false.
-        end if
+        warn_ = optval(warn, .false.)
             
         if     (     warn_ .and. .not.condition) then;  print *,   msg
         elseif (.not.warn_ .and. .not.condition) then;  error stop msg

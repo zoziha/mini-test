@@ -1,0 +1,20 @@
+#:include "common.fypp"
+#:set KINDS_TYPES = REAL_KINDS_TYPES + [('l1','logical')]
+submodule(mini_test) mini_test_optval
+
+contains
+
+    #:for k1, t1 in KINDS_TYPES
+    elemental module function optval_${t1[0]}$${k1}$(x, default) result(x_)
+        ${t1}$, intent(in), optional    :: x
+        ${t1}$, intent(in)              :: default
+        ${t1}$                          :: x_
+
+        if (present(x)) then;   x_ = x
+        else;                   x_ = default
+        end if
+
+    end function optval_${t1[0]}$${k1}$
+    #:endfor
+    
+end submodule mini_test_optval

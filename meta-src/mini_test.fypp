@@ -1,0 +1,50 @@
+#:include "common.fypp"
+module mini_test
+
+    use iso_fortran_env, only: sp => real32, dp => real64, qp => real128
+    private
+
+    public :: check, is_close
+
+    interface
+        !> Version: experimental
+        !> 
+        !> `warn == .true.`(default): if `condition == .false.` then error stop `msg`;
+        !> `warn == .false.`        : if `condition == .false.` then print      `msg`.
+        module subroutine check(condition, msg, warn)
+            logical,          intent(in)            :: condition
+            character(len=*), intent(in)            :: msg
+            logical,          intent(in), optional  :: warn
+        end subroutine check
+    end interface
+
+    !> Version: experimental
+    !>
+    !> Determines whether the values of `a` and `b` are close.
+    interface is_close
+        #:set RC_KINDS_TYPES = REAL_KINDS_TYPES + CMPLX_KINDS_TYPES
+        #:for k1, t1 in RC_KINDS_TYPES
+        elemental module function is_close_${t1[0]}$${k1}$(a, b, rtol, atol) result(bool)
+            ${t1}$,       intent(in)            :: a, b
+            real(${k1}$), intent(in), optional  :: rtol, atol
+            logical                             :: bool
+        end function is_close_${t1[0]}$${k1}$
+        #:endfor
+    end interface is_close
+
+    !> Version: experimental
+    !>
+    !> if `x` is presented, then `x_ = x`;
+    !> if not,              then `x_ = default`.
+    interface optval
+        #:set KINDS_TYPES = REAL_KINDS_TYPES + [('l1','logical')]
+        #:for k1, t1 in KINDS_TYPES
+        elemental module function optval_${t1[0]}$${k1}$(x, default) result(x_)
+            ${t1}$, intent(in), optional    :: x
+            ${t1}$, intent(in)              :: default
+            ${t1}$                          :: x_
+        end function optval_${t1[0]}$${k1}$
+        #:endfor
+    end interface optval
+
+end module mini_test
