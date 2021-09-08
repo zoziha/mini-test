@@ -1,8 +1,6 @@
-
 submodule(mini_test) mini_test_is_close
 
 contains
-
 
     elemental module function is_close_rsp(a, b, rtol, atol) result(bool)
         real(sp), intent(in) :: a, b

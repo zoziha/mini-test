@@ -1,5 +1,5 @@
 name        = "mini-test"
-version     = "0.0.1"
+version     = "0.1.0"
 license     = "MIT"
 maintainer  = "mini-test contributors"
 author      = "左志华"
@@ -25,3 +25,8 @@ main        = "demo_mini_test_check.f90"
 name        = "mini_test_is_close"
 source-dir  = "example"
 main        = "demo_mini_test_is_close.f90"
+
+[[example]]
+name        = "mini_test_disp"
+source-dir  = "example"
+main        = "demo_mini_test_disp.f90"

@@ -28,7 +28,8 @@ mini-test = { git="https://github.com/zoziha/mini-test.git" }
 ## API-Doc
 
 ```fortran
-public :: check, is_close
+public :: check, is_close, disp     !! core
+public :: optval, to_string         !! extra
 ```
 
 Some examples are prepared in the `./example` folder, and you can use `fpm` to run them:
@@ -39,4 +40,8 @@ fpm run --example <demo_name, see `fpm.toml` or list>
 
 ## Links
 
-[fortran-lang/stdlib](https://github.com/fortran-lang/stdlib)
+The `check/optval/to_string` routines are from `fortran-lang/stdlib`; and the `disp` routine is from `keurfonluu/Forlab`.  
+Thanks for your contributions!
+
+[fortran-lang/stdlib](https://github.com/fortran-lang/stdlib)  
+[keurfonluu/Forlab](https://github.com/keurfonluu/Forlab)

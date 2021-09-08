@@ -1,10 +1,11 @@
 #:include "common.fypp"
 module mini_test
 
-    use iso_fortran_env, only: sp => real32, dp => real64, qp => real128
+    use mini_test_kinds
     private
 
-    public :: check, is_close
+    public :: check, is_close, disp
+    public :: optval, to_string
 
     interface
         !> Version: experimental
@@ -40,11 +41,65 @@ module mini_test
         #:set KINDS_TYPES = REAL_KINDS_TYPES + [('l1','logical')]
         #:for k1, t1 in KINDS_TYPES
         elemental module function optval_${t1[0]}$${k1}$(x, default) result(x_)
-            ${t1}$, intent(in), optional    :: x
-            ${t1}$, intent(in)              :: default
-            ${t1}$                          :: x_
+            ${t1}$, intent(in), optional            :: x
+            ${t1}$, intent(in)                      :: default
+            ${t1}$                                  :: x_
         end function optval_${t1[0]}$${k1}$
         #:endfor
+        pure module function optval_character(x, default) result(x_)
+            character(len=*), intent(in), optional  :: x
+            character(len=*), intent(in)            :: default
+            character(len=:), allocatable           :: x_
+        end function optval_character
     end interface optval
+
+    !> version: experimental
+    !>
+    !> Display a scalar, vector or matrix.
+    interface disp
+        #:set DISP_KINDS_TYPES = REAL_KINDS_TYPES + INT_KINDS_TYPES &
+            & + CMPLX_KINDS_TYPES + LOG_KINDS_TYPES
+        #:set DISP_RANKS = range(0, 3)
+        #:for k1, t1 in DISP_KINDS_TYPES
+        #:for rank in DISP_RANKS
+        module subroutine disp_${rank}$_${t1[0]}$${k1}$(value, header, brief)
+            ${t1}$, intent(in) :: value${ranksuffix(rank)}$
+            character(len=*), intent(in), optional :: header
+            logical, intent(in), optional :: brief
+        end subroutine disp_${rank}$_${t1[0]}$${k1}$
+        #:endfor
+        #:endfor
+        module subroutine disp_character(value, header, brief)
+            character(len=*), intent(in), optional :: value
+            character(len=*), intent(in), optional :: header
+            logical,          intent(in), optional :: brief
+        end subroutine disp_character
+    end interface disp
+
+    !> Version: experimental
+    !>
+    !> Format or transfer other types as a string.
+    interface to_string
+        #:set RC_KINDS_TYPES = REAL_KINDS_TYPES + CMPLX_KINDS_TYPES
+        #:set IL_KINDS_TYPES = INT_KINDS_TYPES  + LOG_KINDS_TYPES
+        #:for k1, t1 in RC_KINDS_TYPES
+        pure module function to_string_${t1[0]}$_${k1}$(value, format) result(string)
+            ${t1}$, intent(in) :: value
+            character(len=*), intent(in), optional :: format
+            character(len=:), allocatable          :: string
+        end function to_string_${t1[0]}$_${k1}$
+        #:endfor
+        #:for k1, t1 in IL_KINDS_TYPES
+        pure module function to_string_1_${t1[0]}$_${k1}$(value) result(string)
+            ${t1}$, intent(in) :: value
+            character(len=#{if t1[0]=="l"}#1)#{else}#:), allocatable#{endif}# :: string 
+        end function to_string_1_${t1[0]}$_${k1}$
+        pure module function to_string_2_${t1[0]}$_${k1}$(value, format) result(string)
+            ${t1}$, intent(in) :: value
+            character(len=*), intent(in)  :: format
+            character(len=:), allocatable :: string
+        end function to_string_2_${t1[0]}$_${k1}$
+        #:endfor
+    end interface to_string
 
 end module mini_test

@@ -1,11 +1,9 @@
 #:include "common.fypp"
-
 submodule(mini_test) mini_test_is_close
 
 contains
 
     #! Determines whether the values of `a` and `b` are close.
-
     #:for k1, t1 in REAL_KINDS_TYPES
     elemental module function is_close_${t1[0]}$${k1}$(a, b, rtol, atol) result(bool)
         ${t1}$, intent(in) :: a, b
