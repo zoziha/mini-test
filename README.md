@@ -27,7 +27,9 @@ mini-test = { git="https://github.com/zoziha/mini-test.git" }
 
 ## API-Doc
 
-todo~
+```fortran
+public :: check, is_close
+```
 
 Some examples are prepared in the `./example` folder, and you can use `fpm` to run them:
 ```sh
