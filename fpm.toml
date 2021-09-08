@@ -14,7 +14,7 @@ auto-examples       = false
 auto-tests          = false
 
 [library]
-source-dir = "src"
+source-dir  = "src"
 
 [[example]]
 name        = "mini_test_check"
