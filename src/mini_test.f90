@@ -23,34 +23,34 @@ module mini_test
     !> Determines whether the values of `a` and `b` are close.
     interface is_close
         elemental module function is_close_rsp(a, b, rtol, atol) result(bool)
-            real(sp),       intent(in)            :: a, b
-            real(sp), intent(in), optional  :: rtol, atol
-            logical                             :: bool
+            real(sp), intent(in) :: a, b
+            real(sp), intent(in), optional :: rtol, atol
+            logical :: bool
         end function is_close_rsp
         elemental module function is_close_rdp(a, b, rtol, atol) result(bool)
-            real(dp),       intent(in)            :: a, b
-            real(dp), intent(in), optional  :: rtol, atol
-            logical                             :: bool
+            real(dp), intent(in) :: a, b
+            real(dp), intent(in), optional :: rtol, atol
+            logical :: bool
         end function is_close_rdp
         elemental module function is_close_rqp(a, b, rtol, atol) result(bool)
-            real(qp),       intent(in)            :: a, b
-            real(qp), intent(in), optional  :: rtol, atol
-            logical                             :: bool
+            real(qp), intent(in) :: a, b
+            real(qp), intent(in), optional :: rtol, atol
+            logical :: bool
         end function is_close_rqp
         elemental module function is_close_csp(a, b, rtol, atol) result(bool)
-            complex(sp),       intent(in)            :: a, b
-            real(sp), intent(in), optional  :: rtol, atol
-            logical                             :: bool
+            complex(sp), intent(in) :: a, b
+            real(sp), intent(in), optional :: rtol, atol
+            logical :: bool
         end function is_close_csp
         elemental module function is_close_cdp(a, b, rtol, atol) result(bool)
-            complex(dp),       intent(in)            :: a, b
-            real(dp), intent(in), optional  :: rtol, atol
-            logical                             :: bool
+            complex(dp), intent(in) :: a, b
+            real(dp), intent(in), optional :: rtol, atol
+            logical :: bool
         end function is_close_cdp
         elemental module function is_close_cqp(a, b, rtol, atol) result(bool)
-            complex(qp),       intent(in)            :: a, b
-            real(qp), intent(in), optional  :: rtol, atol
-            logical                             :: bool
+            complex(qp), intent(in) :: a, b
+            real(qp), intent(in), optional :: rtol, atol
+            logical :: bool
         end function is_close_cqp
     end interface is_close
 

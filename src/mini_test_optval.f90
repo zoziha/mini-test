@@ -46,9 +46,9 @@ contains
 
     ! Cannot be made elemental
     pure module function optval_character(x, default) result(x_)
-        character(len=*), intent(in), optional :: x
-        character(len=*), intent(in) :: default
-        character(len=:), allocatable :: x_
+        character(len=*), intent(in), optional  :: x
+        character(len=*), intent(in)            :: default
+        character(len=:), allocatable           :: x_
 
         if (present(x)) then;   x_ = x
         else;                   x_ = default

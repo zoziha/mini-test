@@ -22,7 +22,7 @@ fpm build
 To use `mini-test` for your `fpm` project tests, add the following to your `fpm.toml` file:
 ```toml
 [dev-dependencies]
-mini-test = { git="https://github.com/zoziha/mini-test.git" }
+mini-test = { git="https://github.com/zoziha/mini-test.git", branch="mt-fpm" }
 ```
 
 ## API-Doc
